@@ -16,3 +16,28 @@ Display report for all universities that have a total price for in-state student
 
 
 """
+
+#once it brings it into a python object, it BECOMES a python object
+import json
+
+infile=open('school_data.json','r')
+
+schools=json.load(infile)
+
+print(type(schools))
+
+conference_schools=[372,108,107,130]
+
+for school in schools: #school=dictionary for that school. the object of school is a list of dictionaries, so if we iterate thru list, then each one is dictionary
+    school_name=school['instnm']
+    ncaa=school['NCAA']["NAIA conference number football (IC2020)"]
+
+    if ncaa in conference_schools:
+        grad_women=school['Graduation rate  men (DRVGR2020)']
+        if grad_women>50:
+            print(grad_women)
+
+
+
+
+

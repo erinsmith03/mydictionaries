@@ -207,3 +207,17 @@ ProduceDictionary={
     }
 }
 
+#print stated total
+#print discrepancy
+
+
+for produce in ProduceDictionary:
+    calculated_total=round(ProduceDictionary[produce]['cost']*ProduceDictionary[produce]['amt_sold'],2)
+    if ProduceDictionary[produce]['total']!=calculated_total:
+        print(f'the name of the produce is {produce} and its stated total is {ProduceDictionary[produce]['total']}.\n Its calculated total is {calculated_total}')
+    else:
+        continue
+    
+
+
+

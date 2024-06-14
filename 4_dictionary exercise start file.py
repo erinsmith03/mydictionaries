@@ -1,8 +1,13 @@
 # This program uses a dictionary as a deck of cards.
 
+import random
 def main():
+
     # Create a deck of cards.
-   
+    mydeck=create_deck()#dont need to put anything in () bc there are no parameters
+    #mydeck is going to be a dictionary of all these cards
+    #create deck is value returning, so it must be stored in a variable so that we can use it
+
 
     # Get the number of cards to deal.
     num_cards = int(input('How many cards should I deal? '))
@@ -10,10 +15,11 @@ def main():
 
 
     # Deal the cards.
-
+    deal_cards(mydeck,num_cards)#variable is a storage location, and u have to call those two objects
+    #program knows what to do with it when we call it
 
     
-    
+    #keys HAVE to be unique, but the values dont
 
 # The create_deck function returns a dictionary
 # representing a deck of cards.
@@ -45,16 +51,30 @@ def create_deck():
             'Queen of Diamonds':10, 'King of Diamonds': 10}
 
     # Return the deck.
-
+    return deck
 
 
 
 # The deal_cards function deals a specified number of cards
 # from the deck.
 
-def deal_cards(deck, number):
+def deal_cards(deck, number): #these are local variable assignments, now that we are in the function, the variable names change to local ones
     # Initialize an accumulator for the hand value.
+    hand_value=0
+    if number>52:
+        number=52 #we dont have to ask the user for more bc we assume they dont want more
 
+    for x in range(number): #loop as many times as user asks for cards
+        #we want a random key value, and then pop it out of the deck
+        #card,value=deck.popitem() #its a tuple, so that comma separates the two variables into the two distinct ones
+        card=random.choice(list(deck)) #converting keys into list
+
+        print(card)
+        value=deck[card] #card is the key, so giving the key to a dictionary u get the value
+        hand_value+=value
+        #we need to remove it from the dictionary so the card doesnt show up again 
+        del deck[card]
+    print(f'The value of the hand is: {hand_value}')
     
     
     # DATA VALIDATION

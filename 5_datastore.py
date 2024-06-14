@@ -47,3 +47,27 @@ datastore = { "medical":[
 
       ]
 }
+
+
+outfile=open('retail_space.csv','w')
+outfile.write('room-number, use, sq-ft, price\n')
+
+for dict in datastore['medical']:
+    room_num=str(dict['room-number'])
+    room_use=str(dict['use'])
+    sq_ft=str(dict['sq-ft'])
+    price_room=str(dict['price'])
+    outfile.write(room_num+','+room_use+','+sq_ft+','+price_room+'\n')
+
+outfile.close()
+
+#u may need to store it and serialize it and store it as binary format and the object can be brought back into python program
+#process of pickling allows us to serialize an object and deserialize it; so convert it into good stream, store it somewhere, adn then if u need to access it again u deserialize it
+
+import pickle
+
+#.dat lets python knows its serial file
+#the 'b' lets python know were opening it in binary mode/format
+
+pickle_file=open('datastore.dat','wb')
+pickle.dump(datastore,pickle_file) #give object we wanna dump which is datastore, and the second is the file we want to dump it into
